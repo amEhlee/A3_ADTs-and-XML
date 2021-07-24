@@ -43,7 +43,11 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testSize() {
-		fail("Not yet implemented");
+		list1.add("test1");
+		list1.add("test2");
+		list1.add("test3");
+		
+		assertEquals(3, list1.size());
 	}
 
 	/**
@@ -68,7 +72,12 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testAddIntE() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.add("Test2");
+		list1.add("Test4");
+		list1.add(2,"Test3");
+		
+		assertTrue(list1.get(2).equals("Test3"));
 	}
 
 	/**
@@ -76,7 +85,8 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testAddE() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		assertTrue(list1.get(0).equals("Test1"));
 	}
 
 	/**
@@ -84,7 +94,17 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testAddAll() {
-		fail("Not yet implemented");
+		// test if second array is initally empty
+		assertTrue(list2.isEmpty());
+		
+		list1.add("test1");
+		list1.add("test2");
+		list1.add("test3");
+		
+		// Check if it is no longer empty and contains 3 elements 
+		assertFalse(list2.isEmpty());
+		assertEquals(3, list2.size());
+		
 	}
 
 	/**
@@ -92,7 +112,11 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testGet() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.add("Test2");
+		
+		assertTrue(list1.get(0).equals("Test1"));
+		assertTrue(list1.get(1).equals("Test2"));
 	}
 
 	/**
@@ -100,7 +124,11 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testRemoveInt() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.remove(0);
+		
+		assertFalse(list1.contains("Test1"));
+		assertTrue(list1.isEmpty());
 	}
 
 	/**
@@ -108,7 +136,11 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testRemoveE() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.remove("Test1");
+		
+		assertFalse(list1.contains("Test1"));
+		assertTrue(list1.isEmpty());
 	}
 
 	/**
@@ -138,7 +170,9 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testContains() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+
+		assertTrue(list1.contains("Test1"));
 	}
 
 	/**
