@@ -13,7 +13,7 @@ import adts.ListADT;
 import utilities.MyArrayList;
 
 /**
- * @author amoussa
+ * 
  *
  */
 public class MyArrayListTests {
