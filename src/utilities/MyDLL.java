@@ -220,6 +220,9 @@ public class MyDLL<E> implements ListADT<E> {
 				if(current.getData() == toFind) {
 					return true;
 				}
+				else {
+					current = current.getNext();
+				}
 			}
 		}
 
