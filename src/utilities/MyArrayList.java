@@ -273,6 +273,9 @@ public class MyArrayList<E> implements ListADT<E> {
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
 		int size = toHold.length;
+		if (size < arr.length) {
+			size = arr.length;
+		}
 		E[] newArr = (E[]) new Object[size];
 		try {
 			if (size == 0) {
