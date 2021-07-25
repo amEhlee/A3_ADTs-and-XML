@@ -88,8 +88,13 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return false;
+
+		for (int i = 0; i < toAdd.size(); i++) {
+			add(toAdd.get(i));
+		}
+
+		return true;
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -180,10 +185,25 @@ public class MyDLL<E> implements ListADT<E> {
 		return removed;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E set(int index, E toChange) throws NullPointerException, IndexOutOfBoundsException {
-		// TODO Auto-generated method stub
-		return null;
+		E changed = null;
+
+		if(index == 0) {
+			head.setData(toChange);
+		} else if(index >= size() || index < 0) {
+			throw new IndexOutOfBoundsException();
+		} else {
+			Node current = head;
+			for (int i = 0; i < index; i++) {
+				current = current.getNext();
+			}
+			changed = (E) current.getData();
+			current.setData(toChange);
+		}
+
+		return changed;
 	}
 
 	@Override
@@ -194,19 +214,45 @@ public class MyDLL<E> implements ListADT<E> {
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
 		// TODO Auto-generated method stub
+		if(!isEmpty()) {
+			Node current = head;
+			for (int i = 0; i < size(); i++) {
+				if(current.getData() == toFind) {
+					return true;
+				}
+			}
+		}
+
 		return false;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
-		// TODO Auto-generated method stub
-		return null;
+		int size = toHold.length;
+		E[] newArr = (E[]) new Object[size];
+		Node current = head;
+		
+		for (int i = 0; i < size(); i++) {
+			newArr[i] = (E) current.getData();
+			current = current.getNext();
+		}
+
+		return newArr;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		Object[] newArr = new Object[size()];
+		Node current = head;
+		
+		for (int i = 0; i < size(); i++) {
+			newArr[i] = (E) current.getData();
+			current = current.getNext();
+		}
+
+		return newArr;
 	}
 
 	@Override
