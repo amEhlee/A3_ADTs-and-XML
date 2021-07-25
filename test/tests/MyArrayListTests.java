@@ -148,7 +148,9 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testSet() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.set(0, "TestSet");
+		assertTrue(list1.get(0).equals("TestSet"));
 	}
 
 	/**
@@ -176,19 +178,67 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#toArray(E[])}.
+	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is less.
 	 */
 	@Test
-	public void testToArrayEArray() {
-		fail("Not yet implemented");
+	public void testToArrayEArraySmallSize() {
+		list1.add("Test1");
+		list1.add("Test2");
+		list1.add("Test3");
+		String[] output = new String[2];
+		output = list1.toArray(output);
+		assertTrue(output.length == list1.size());
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is adequate.
+	 */
+	@Test
+	public void testToArrayEArrayBigSize() {
+		list1.add("Test1");
+		list1.add("Test2");
+		list1.add("Test3");
+		String[] output = new String[6];
+		output = list1.toArray(output);
+		assertTrue(output.length == 6);
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is equal.
+	 */
+	@Test
+	public void testToArrayEArrayEqualSize() {
+		list1.add("Test1");
+		list1.add("Test2");
+		list1.add("Test3");
+		String[] output = new String[3];
+		output = list1.toArray(output);
+		assertTrue(output.length == list1.size());
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
 	}
 
 	/**
 	 * Test method for {@link utilities.MyArrayList#toArray()}.
 	 */
+	@SuppressWarnings("unused")
 	@Test
 	public void testToArray() {
-		fail("Not yet implemented");
+		list1.add("Test1");
+		list1.add("Test2");
+		list1.add("Test3");
+		String[] output = (String[]) list1.toArray();
+		assertTrue(output.length == 3);
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
 	}
 
 	/**
