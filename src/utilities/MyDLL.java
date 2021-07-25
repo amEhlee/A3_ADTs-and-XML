@@ -48,7 +48,7 @@ public class MyDLL<E> implements ListADT<E> {
 			return add(toAdd);
 		} else {
 			Node current = head;
-			for (int i = 0; i < index; i++) {
+			for (int i = 1; i < index; i++) {
 				tempPrev = current;
 				current = current.getNext();
 			}
@@ -131,8 +131,10 @@ public class MyDLL<E> implements ListADT<E> {
 		if(index == 0) {
 			removed = (E) head.getData();
 			head = head.getNext();
-		}
-		else {
+		} else if(index == size() - 1) {
+			removed = (E) tail.getData();
+			tail = tail.getPrevious();
+		} else {
 			Node current = head;
 			Node tempPrev = null;
 			// navigate to node
