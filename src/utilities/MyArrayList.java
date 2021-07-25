@@ -15,7 +15,7 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
-		arr = (E[]) new Object[10];
+		arr = (E[]) new Object[0];
 	}
 	
 	@Override
@@ -54,7 +54,7 @@ public class MyArrayList<E> implements ListADT<E> {
 						j++;
 					}
 					else {
-						newArr[i] = (E) arr[i - j];
+						newArr[i] = arr[i - j];
 					}
 				}
 			}
@@ -127,7 +127,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			
 			for (int i = 0; i  < arr.length; i++) {	
 				if (i == index) {
-					return (E) arr[i];
+					return arr[i];
 				}
 			
 			}
@@ -155,18 +155,18 @@ public class MyArrayList<E> implements ListADT<E> {
 			Object[] newArr = new Object[size];
 			if (index == size - 1) {
 				for (int i = 0; i < arr.length - 1; i++) {
-					newArr[i] = (E) arr[i];
+					newArr[i] = arr[i];
 				}
 			}
 			else {
 				for (int i = 0; i < arr.length; i++) {
 					if (i == index) {
 						newArr[i] = arr[i + 1];
-						temp = (E) arr[i];
+						temp = arr[i];
 						i++;
 					}
 					else {
-						newArr[i] = (E) arr[i]; 
+						newArr[i] = arr[i]; 
 					}
 				}
 			}
@@ -190,13 +190,13 @@ public class MyArrayList<E> implements ListADT<E> {
 			
 			Object[] newArr = new Object[size];
 				for (int i = 0; i < arr.length; i++) {
-					if (toRemove == (E) arr[i]) {
-						newArr[i] = (E) arr[i + 1];
-						temp = (E) arr[i];
+					if (toRemove == arr[i]) {
+						newArr[i] = arr[i + 1];
+						temp = arr[i];
 						i++;
 					}
 					else {
-						newArr[i] = (E) arr[i]; 
+						newArr[i] = arr[i]; 
 					}
 				}
 			arr = (E[]) newArr;
@@ -222,11 +222,11 @@ public class MyArrayList<E> implements ListADT<E> {
 				for (int i = 0; i < arr.length; i++) {
 					if (i == index) {
 						newArr[i] = toChange;
-						temp = (E) arr[i];
+						temp = arr[i];
 						i++;
 					}
 					else {
-						newArr[i] = (E) arr[i]; 
+						newArr[i] = arr[i]; 
 					}
 				 }
 			arr = (E[]) newArr;
@@ -253,10 +253,12 @@ public class MyArrayList<E> implements ListADT<E> {
 	public boolean contains(E toFind) throws NullPointerException {
 		boolean contains = false;
 		try {
-			int size = arr.length;
+			if (toFind == null) {
+				throw new NullPointerException();
+			}
 			
 				for (int i = 0; i < arr.length; i++) {
-					if (toFind == (E) arr[i]) {
+					if (toFind == arr[i]) {
 						contains = true;
 					}
 				 }
@@ -271,6 +273,9 @@ public class MyArrayList<E> implements ListADT<E> {
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
 		int size = toHold.length;
+		if (size < arr.length) {
+			size = arr.length;
+		}
 		E[] newArr = (E[]) new Object[size];
 		try {
 			if (size == 0) {
@@ -278,7 +283,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			}
 			
 		    for (int i = 0; i < toHold.length; i++) {
-		    	newArr[i] = (E) arr[i];
+		    	newArr[i] = arr[i];
 		    }
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
@@ -291,13 +296,9 @@ public class MyArrayList<E> implements ListADT<E> {
 	@Override
 	public Object[] toArray() {
 		int size = arr.length;
-		Object[] newArr = new Object[size];
-		try {			
-		    for (int i = 0; i < arr.length; i++) {
-		    	newArr[i] = arr[i];
-		    }
-		} catch(NullPointerException ex) {
-			ex.printStackTrace();
+		Object[] newArr = new Object[size];		
+		for (int i = 0; i < arr.length; i++) {
+			newArr[i] = arr[i];
 		}
 
 		return newArr;

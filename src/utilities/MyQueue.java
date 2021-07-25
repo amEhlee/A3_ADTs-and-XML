@@ -5,9 +5,20 @@ import adts.QueueADT;
 import exceptions.EmptyQueueException;
 
 public class MyQueue<E> implements QueueADT<E> {
+	
+	@SuppressWarnings("unchecked")
+	E[] arr = (E[]) new Object[0];
 
 	public void enqueue(E toAdd) throws NullPointerException {
-		// TODO Auto-generated method stub
+		try {
+			if (toAdd == null) {
+				throw new NullPointerException();
+			}
+			
+			
+		} catch (NullPointerException ex) {
+			ex.printStackTrace();
+		}
 		
 	}
 
@@ -55,7 +66,14 @@ public class MyQueue<E> implements QueueADT<E> {
 
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException {
-		// TODO Auto-generated method stub
+		try {
+			if (holder == null) {
+				throw new NullPointerException();
+			}
+			
+		} catch (NullPointerException ex) {
+			ex.printStackTrace();
+		}
 		return null;
 	}
 
