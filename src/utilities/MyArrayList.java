@@ -284,7 +284,7 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 		if (holdSize < size) {
 			holdSize = size;
-			newArr = (E[]) new Object[holdSize];
+			newArr = (E[]) (Object) new Object[holdSize];
 		}
 		else {
 			newArr = toHold;
@@ -295,7 +295,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				throw new NullPointerException();
 			}
 			
-		    for (int i = 0; i < toHold.length; i++) {
+		    for (int i = 0; i < size; i++) {
 		    	newArr[i] = (E) arr[i];
 		    }
 		} catch(NullPointerException ex) {
