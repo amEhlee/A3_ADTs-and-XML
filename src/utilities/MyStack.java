@@ -8,7 +8,7 @@ import adts.StackADT;
 public class MyStack<E> implements StackADT<E> {
 
 	@SuppressWarnings("unchecked")
-	E[] arr = (E[]) new Object[1];
+	E[] arr = (E[]) new Object[0];
 
 	@SuppressWarnings("unchecked")
 	@Override
