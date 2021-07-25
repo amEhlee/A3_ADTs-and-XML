@@ -11,11 +11,11 @@ public class MyArrayList<E> implements ListADT<E> {
 	 * 
 	 */
 	private static final long serialVersionUID = -380906261708501589L;
-	private E[] arr;
+	private Object[] arr;
 
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
-		arr = (E[]) new Object[0];
+		arr = new Object[0];
 	}
 	
 	@Override
@@ -26,8 +26,7 @@ public class MyArrayList<E> implements ListADT<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
-		int size = arr.length;
-		arr = (E[]) new Object[size];
+		arr = (E[]) new Object[0];
 	}
 
 	@SuppressWarnings("unchecked")
@@ -127,7 +126,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			
 			for (int i = 0; i  < arr.length; i++) {	
 				if (i == index) {
-					return arr[i];
+					return (E) arr[i];
 				}
 			
 			}
@@ -162,7 +161,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				for (int i = 0; i < arr.length; i++) {
 					if (i == index) {
 						newArr[i] = arr[i + 1];
-						temp = arr[i];
+						temp = (E) arr[i];
 						i++;
 					}
 					else {
@@ -170,7 +169,7 @@ public class MyArrayList<E> implements ListADT<E> {
 					}
 				}
 			}
-			arr = (E[]) newArr;
+			arr = newArr;
 			
 			
 
@@ -191,9 +190,14 @@ public class MyArrayList<E> implements ListADT<E> {
 			Object[] newArr = new Object[size];
 				for (int i = 0; i < arr.length; i++) {
 					if (toRemove == arr[i]) {
-						newArr[i] = arr[i + 1];
-						temp = arr[i];
-						i++;
+						if (i == arr.length - 1) {
+							temp = (E) arr[i];
+						}
+						else {
+							newArr[i] = arr[i + 1];
+							temp = (E) arr[i];
+							i++;
+						}
 					}
 					else {
 						newArr[i] = arr[i]; 
@@ -222,7 +226,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				for (int i = 0; i < arr.length; i++) {
 					if (i == index) {
 						newArr[i] = toChange;
-						temp = arr[i];
+						temp = (E) arr[i];
 						i++;
 					}
 					else {
@@ -276,20 +280,20 @@ public class MyArrayList<E> implements ListADT<E> {
 		if (size < arr.length) {
 			size = arr.length;
 		}
-		E[] newArr = (E[]) new Object[size];
+		Object[] newArr = new Object[size];
 		try {
 			if (size == 0) {
 				throw new NullPointerException();
 			}
 			
 		    for (int i = 0; i < toHold.length; i++) {
-		    	newArr[i] = arr[i];
+		    	newArr[i] = (E) arr[i];
 		    }
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
 		}
 
-		return newArr;
+		return (E[]) newArr;
 	}
 
 
