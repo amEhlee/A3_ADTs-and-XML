@@ -15,7 +15,7 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
-		arr = (E[]) new Object[10];
+		arr = (E[]) new Object[0];
 	}
 	
 	@Override
