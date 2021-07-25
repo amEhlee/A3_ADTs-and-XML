@@ -127,6 +127,7 @@ public class MyArrayListTests {
 		list1.add("Test1");
 		list1.remove(0);
 		
+		System.out.println(list1.size());
 		assertFalse(list1.contains("Test1"));
 		assertTrue(list1.isEmpty());
 	}
@@ -224,6 +225,7 @@ public class MyArrayListTests {
 		assertTrue(output[1].equals("Test2"));
 		assertTrue(output[2].equals("Test3"));
 	}
+	
 
 	/**
 	 * Test method for {@link utilities.MyArrayList#toArray()}.

@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.NoSuchElementException;
+
 import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import adts.Iterator;
@@ -11,11 +13,13 @@ public class MyArrayList<E> implements ListADT<E> {
 	 * 
 	 */
 	private static final long serialVersionUID = -380906261708501589L;
-	private Object[] arr;
-
+	private E[] arr;
+	private int size;
+	
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
-		arr = new Object[0];
+		size = 0;
+		arr = (E[]) new Object[size];
 	}
 	
 	@Override
@@ -26,6 +30,7 @@ public class MyArrayList<E> implements ListADT<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
+		size = 0;
 		arr = (E[]) new Object[0];
 	}
 
@@ -37,7 +42,6 @@ public class MyArrayList<E> implements ListADT<E> {
 				throw new NullPointerException();
 			}
 			
-			int size = arr.length;
 			if (index > size + 1 || index < 0) {
 				throw new IndexOutOfBoundsException();
 			}
@@ -47,7 +51,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				add(toAdd);
 			}
 			else {
-				for (int i = 0,j = 0; i - j < arr.length; i++) {
+				for (int i = 0,j = 0; i - j < size; i++) {
 					if (i == index) {
 						newArr[i] = toAdd;
 						j++;
@@ -58,6 +62,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				}
 			}
 			arr = (E[]) newArr;
+			size = arr.length;
 			return true;
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
@@ -70,6 +75,7 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(E toAdd) throws NullPointerException, IndexOutOfBoundsException {
 		try {
@@ -77,16 +83,15 @@ public class MyArrayList<E> implements ListADT<E> {
 				throw new NullPointerException();
 			}
 			
-			int size = arr.length;
-			
-			
+						
 			Object[] newArr = new Object[size + 1];
-			for (int i = 0; i  < arr.length; i++) {	
+			for (int i = 0; i  < size; i++) {	
 					newArr[i] = arr[i];
 				
 			}
 			newArr[newArr.length - 1] = toAdd;
 			arr = (E[]) newArr;
+			size = arr.length;
 			return true;
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
@@ -119,12 +124,11 @@ public class MyArrayList<E> implements ListADT<E> {
 	@Override
 	public E get(int index) throws IndexOutOfBoundsException {
 		try {
-			int size = arr.length;
 			if (index > size + 1 || index < 0) {
 				throw new IndexOutOfBoundsException();
 			}
 			
-			for (int i = 0; i  < arr.length; i++) {	
+			for (int i = 0; i  < size; i++) {	
 				if (i == index) {
 					return (E) arr[i];
 				}
@@ -145,20 +149,19 @@ public class MyArrayList<E> implements ListADT<E> {
 		E temp = null;
 		try {
 
-			int size = arr.length;
 			
 			if (index > size + 1 || index < 0) {
 				throw new IndexOutOfBoundsException();
 			}
 			
-			Object[] newArr = new Object[size];
+			Object[] newArr = new Object[size - 1];
 			if (index == size - 1) {
-				for (int i = 0; i < arr.length - 1; i++) {
+				for (int i = 0; i < size - 1; i++) {
 					newArr[i] = arr[i];
 				}
 			}
 			else {
-				for (int i = 0; i < arr.length; i++) {
+				for (int i = 0; i < size; i++) {
 					if (i == index) {
 						newArr[i] = arr[i + 1];
 						temp = (E) arr[i];
@@ -169,7 +172,8 @@ public class MyArrayList<E> implements ListADT<E> {
 					}
 				}
 			}
-			arr = newArr;
+			arr = (E[]) newArr;
+			size = arr.length;
 			
 			
 
@@ -185,12 +189,11 @@ public class MyArrayList<E> implements ListADT<E> {
 		E temp = null;
 		try {
 
-			int size = arr.length;
 			
-			Object[] newArr = new Object[size];
-				for (int i = 0; i < arr.length; i++) {
+			Object[] newArr = new Object[size - 1];
+				for (int i = 0; i < size; i++) {
 					if (toRemove == arr[i]) {
-						if (i == arr.length - 1) {
+						if (i == size - 1) {
 							temp = (E) arr[i];
 						}
 						else {
@@ -204,6 +207,7 @@ public class MyArrayList<E> implements ListADT<E> {
 					}
 				}
 			arr = (E[]) newArr;
+			size = arr.length;
 			
 			
 
@@ -220,10 +224,9 @@ public class MyArrayList<E> implements ListADT<E> {
 		E temp = null;
 		try {
 			
-			int size = arr.length;
 			
 			Object[] newArr = new Object[size];
-				for (int i = 0; i < arr.length; i++) {
+				for (int i = 0; i < size; i++) {
 					if (i == index) {
 						newArr[i] = toChange;
 						temp = (E) arr[i];
@@ -244,7 +247,7 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@Override
 	public boolean isEmpty() {
-		if (arr.length == 0) {
+		if (size == 0) {
 			return true;
 		}
 		else {
@@ -261,7 +264,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				throw new NullPointerException();
 			}
 			
-				for (int i = 0; i < arr.length; i++) {
+				for (int i = 0; i < size; i++) {
 					if (toFind == arr[i]) {
 						contains = true;
 					}
@@ -276,11 +279,17 @@ public class MyArrayList<E> implements ListADT<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
-		int size = toHold.length;
-		if (size < arr.length) {
-			size = arr.length;
+		int holdSize = toHold.length;
+		E[] newArr = null;
+		
+		if (holdSize < size) {
+			holdSize = size;
+			newArr = (E[]) new Object[holdSize];
 		}
-		Object[] newArr = new Object[size];
+		else {
+			newArr = toHold;
+		}
+		
 		try {
 			if (size == 0) {
 				throw new NullPointerException();
@@ -293,7 +302,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			ex.printStackTrace();
 		}
 
-		return (E[]) newArr;
+		return newArr;
 	}
 
 
@@ -301,7 +310,7 @@ public class MyArrayList<E> implements ListADT<E> {
 	public Object[] toArray() {
 		int size = arr.length;
 		Object[] newArr = new Object[size];		
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < size; i++) {
 			newArr[i] = arr[i];
 		}
 
@@ -310,8 +319,20 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<E>() {
+
+			@Override
+			public boolean hasNext() {
+				// TODO Auto-generated method stub
+				return false;
+			}
+
+			@Override
+			public E next() throws NoSuchElementException {
+				// TODO Auto-generated method stub
+				return null;
+			}
+		};
 	}
 
 }
