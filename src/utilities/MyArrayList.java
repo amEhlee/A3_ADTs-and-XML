@@ -279,15 +279,12 @@ public class MyArrayList<E> implements ListADT<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
-		int holdSize = toHold.length;
-		E[] newArr = null;
-		
+		int holdSize = toHold.length;		
 		if (holdSize < size) {
-			holdSize = size;
-			newArr = (E[]) (Object) new Object[holdSize];
+			toHold = (E[]) new Object[size];
 		}
-		else {
-			newArr = toHold;
+		else if (holdSize > size) {
+			toHold[size] = null;
 		}
 		
 		try {
@@ -296,13 +293,13 @@ public class MyArrayList<E> implements ListADT<E> {
 			}
 			
 		    for (int i = 0; i < size; i++) {
-		    	newArr[i] = (E) arr[i];
+		    	toHold[i] = arr[i];
 		    }
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
 		}
 
-		return newArr;
+		return (E[]) toHold;
 	}
 
 
