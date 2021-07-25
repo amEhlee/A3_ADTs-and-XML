@@ -74,9 +74,10 @@ public class MyDLLTests {
         DLL.add("a");
         DLL.add("b");
         DLL.add("c");
-        DLL.add(2, "z");
+        DLL.add("d");
+        DLL.add(3, "z");
 
-        assertEquals("z", DLL.get(2));
+        assertEquals("z", DLL.get(3));
     }
 
     @Test
@@ -113,7 +114,7 @@ public class MyDLLTests {
         assertFalse(DLL.contains("a"));
 
         // remove tail
-        DLL.remove(6);
+        DLL.remove(DLL.size() - 1); 
         assertFalse(DLL.contains("f"));
     }
 
@@ -137,7 +138,7 @@ public class MyDLLTests {
         assertFalse(DLL.contains("a"));
 
         // remove tail
-        DLL.remove("f");
+        System.out.println("removed= " + DLL.remove("f"));
         assertFalse(DLL.contains("f"));
     }
 

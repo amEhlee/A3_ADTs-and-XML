@@ -44,21 +44,22 @@ public class MyDLL<E> implements ListADT<E> {
 		Node newNode = new Node(toAdd);
 		Node tempPrev = null;
 
-		if(index == size() - 1) {
-			return add(toAdd);
-		} else {
-			Node current = head;
-			for (int i = 1; i < index; i++) {
-				tempPrev = current;
-				current = current.getNext();
-			}
-
-			newNode.setNext(current.getNext());
-			newNode.setPrevious(tempPrev);
-			current.setNext(newNode);
-
-			return true;
+		if(index > size() || index < 0) {
+			throw new IndexOutOfBoundsException();
 		}
+
+		Node current = head;
+		for (int i = 1; i < index; i++) {
+			tempPrev = current;
+			current = current.getNext();
+		}
+
+		newNode.setNext(current.getNext());
+		newNode.setPrevious(tempPrev);
+		current.setNext(newNode);
+
+		return true;
+		
 
 	}
 
@@ -75,11 +76,13 @@ public class MyDLL<E> implements ListADT<E> {
 
 			// after reaching end 
 			temp.setNext(newNode);
+			newNode.setPrevious(temp);
 			tail = newNode.getNext();
 			return true;
 		}
 		else {
 			head = newNode;
+			head.setPrevious(null);
 			tail = head.getNext();
 			return true;
 		}
@@ -132,8 +135,16 @@ public class MyDLL<E> implements ListADT<E> {
 			removed = (E) head.getData();
 			head = head.getNext();
 		} else if(index == size() - 1) {
-			removed = (E) tail.getData();
-			tail = tail.getPrevious();
+			Node current = head;
+			Node tempPrev = current;
+			for (int i = 0; i < index; i++) {
+				tempPrev = current;
+				current = current.getNext();
+			}
+			
+			// unlink last node
+			removed = (E) current.getData();
+			tempPrev.setNext(tail);
 		} else {
 			Node current = head;
 			Node tempPrev = null;
@@ -164,23 +175,31 @@ public class MyDLL<E> implements ListADT<E> {
 		if(head.getData() == toRemove) {
 			removed = (E) head.getData();
 			head = head.getNext();
-		}
+			return removed;
 
-		// if target is tail 
-		if(get(size() - 1) == toRemove) {
-			removed = (E) tail.getData();
-			tail = tail.getPrevious();
-		}
-
-		for (int i = 0; i < size(); i++) {
-			if (current.getData() == toRemove) {
-				removed = (E) current.getData();
-				current.getNext().setPrevious(tempPrev);
-				tempPrev.setNext(current.getNext());
-			}
-			else {
+		} else if(get(size() - 1) == toRemove) {
+			// if target is tail 
+			while(current.getData() != toRemove ) {
 				tempPrev = current;
 				current = current.getNext();
+			}
+
+			// unlink node
+			removed = (E) current.getData();
+			tempPrev.setNext(tail);
+			return removed;
+			
+		} else {
+			for (int i = 0; i < size(); i++) {
+				if (current.getData() == toRemove) {
+					removed = (E) current.getData();
+					current.getNext().setPrevious(tempPrev);
+					tempPrev.setNext(current.getNext());
+				}
+				else {
+					tempPrev = current;
+					current = current.getNext();
+				}
 			}
 		}
 
