@@ -76,6 +76,7 @@ public class MyDLL<E> implements ListADT<E> {
 
 			// after reaching end 
 			temp.setNext(newNode);
+			newNode.setPrevious(temp);
 			tail = newNode.getNext();
 			return true;
 		}
