@@ -123,7 +123,7 @@ public class MyArrayListTests {
 	 * Test method for {@link utilities.MyArrayList#remove(int)}.
 	 */
 	@Test
-	public void testRemoveInt() {
+	public void testRemoveIndex() {
 		list1.add("Test1");
 		list1.remove(0);
 		
@@ -234,7 +234,7 @@ public class MyArrayListTests {
 		list1.add("Test1");
 		list1.add("Test2");
 		list1.add("Test3");
-		String[] output = (String[]) list1.toArray();
+		Object[] output = list1.toArray();
 		assertTrue(output.length == 3);
 		assertTrue(output[0].equals("Test1"));
 		assertTrue(output[1].equals("Test2"));
