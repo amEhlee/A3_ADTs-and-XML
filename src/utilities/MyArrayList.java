@@ -293,13 +293,9 @@ public class MyArrayList<E> implements ListADT<E> {
 	@Override
 	public Object[] toArray() {
 		int size = arr.length;
-		Object[] newArr = new Object[size];
-		try {			
-		    for (int i = 0; i < arr.length; i++) {
-		    	newArr[i] = arr[i];
-		    }
-		} catch(NullPointerException ex) {
-			ex.printStackTrace();
+		Object[] newArr = new Object[size];		
+		for (int i = 0; i < arr.length; i++) {
+			newArr[i] = arr[i];
 		}
 
 		return newArr;
