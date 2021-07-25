@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.EmptyStackException;
+
 import adts.Iterator;
 import adts.QueueADT;
 import exceptions.EmptyQueueException;
@@ -15,34 +17,64 @@ public class MyQueue<E> implements QueueADT<E> {
 				throw new NullPointerException();
 			}
 			
-			
+			E[] temp = (E[]) new Object[arr.length + 1];
+			temp[temp.length - 1] = toAdd;
+			arr = temp;
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E dequeue() throws EmptyQueueException {
-		// TODO Auto-generated method stub
-		return null;
+		E dequeued = null;
+		try {
+			if (arr.length <= 0) {
+				throw new EmptyQueueException();
+			}
+
+			E[] temp = (E[]) new Object[arr.length - 1];
+			for (int i = 1; i < temp.length; i++) {
+				temp[i] = arr[i];
+			}
+			dequeued = arr[0];
+			arr = temp;
+		} catch (EmptyQueueException ex) {
+			ex.printStackTrace();
+		}
+		return dequeued;
 	}
 
 	@Override
 	public E peek() throws EmptyQueueException {
-		// TODO Auto-generated method stub
-		return null;
+		E value = null;
+		try {
+			if (arr.length <= 0) {
+				throw new EmptyStackException();
+			}
+
+			value = arr[0];
+
+		} catch (EmptyStackException ex) {
+			ex.printStackTrace();
+		}
+		return value;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void dequeueAll() {
-		// TODO Auto-generated method stub
-		
+		E[] temp = (E[]) new Object[1];
+		arr = temp;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
+		if (arr.length == 0) {
+			return true;
+		}
 		return false;
 	}
 
@@ -52,29 +84,60 @@ public class MyQueue<E> implements QueueADT<E> {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(QueueADT<E> that) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean exact = false;
+		E[] temp = (E[]) that.toArray();
+		if (that.size() == arr.length) {
+			for (int i = 0; i < arr.length; i++) {
+				if (temp[i] == arr[i]) {
+					exact = true;
+				}
+				else {
+					exact = false;
+					break;
+				}
+			}
+		}
+		
+		return exact;
 	}
 
 	@Override
 	public Object[] toArray() {
-		// TODO Auto-generated method stub
-		return null;
+		int size = arr.length;
+		Object[] newArr = new Object[size];		
+		for (int i = 0; i < arr.length; i++) {
+		    newArr[i] = arr[i];
+		}
+
+		return newArr;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException {
+		int size = holder.length;
+		
+		if (size < arr.length) {
+			size = arr.length;
+		}
+		
+		E[] newArr = (E[]) new Object[size];
 		try {
-			if (holder == null) {
+			if (size == 0) {
 				throw new NullPointerException();
 			}
 			
-		} catch (NullPointerException ex) {
+		    for (int i = 0; i < holder.length; i++) {
+		    	newArr[i] = arr[i];
+		    }
+		} catch(NullPointerException ex) {
 			ex.printStackTrace();
 		}
-		return null;
+
+		return newArr;
 	}
 
 	@Override
@@ -85,8 +148,7 @@ public class MyQueue<E> implements QueueADT<E> {
 
 	@Override
 	public int size() {
-		// TODO Auto-generated method stub
-		return 0;
+		return arr.length;
 	}
 
 }
