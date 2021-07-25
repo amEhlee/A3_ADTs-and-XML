@@ -158,12 +158,14 @@ public class MyStack<E> implements StackADT<E> {
 		return null;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean equals(StackADT<E> that) {
 		boolean exact = false;
+		E[] temp = (E[]) that.toArray();
 		if (that.size() == arr.length) {
 			for (int i = 0; i < arr.length; i++) {
-				if (that == arr[i]) {
+				if (temp[i] == arr[i]) {
 					exact = true;
 				}
 				else {
