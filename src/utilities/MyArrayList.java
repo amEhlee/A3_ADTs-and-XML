@@ -7,10 +7,15 @@ import adts.ListADT;
 
 public class MyArrayList<E> implements ListADT<E> {
 	
-	private Object[] arr;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -380906261708501589L;
+	private E[] arr;
 
+	@SuppressWarnings("unchecked")
 	public MyArrayList() {
-		arr = new Object[10];
+		arr = (E[]) new Object[10];
 	}
 	
 	@Override
@@ -18,10 +23,11 @@ public class MyArrayList<E> implements ListADT<E> {
 		return arr.length;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
 		int size = arr.length;
-		arr = new Object[size];
+		arr = (E[]) new Object[size];
 	}
 
 	@SuppressWarnings("unchecked")
@@ -52,7 +58,7 @@ public class MyArrayList<E> implements ListADT<E> {
 					}
 				}
 			}
-			arr = newArr;
+			arr = (E[]) newArr;
 			return true;
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
@@ -81,7 +87,7 @@ public class MyArrayList<E> implements ListADT<E> {
 				
 			}
 			newArr[newArr.length - 1] = toAdd;
-			arr = newArr;
+			arr = (E[]) newArr;
 			return true;
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
@@ -164,7 +170,7 @@ public class MyArrayList<E> implements ListADT<E> {
 					}
 				}
 			}
-			arr = newArr;
+			arr = (E[]) newArr;
 			
 			
 
@@ -193,7 +199,7 @@ public class MyArrayList<E> implements ListADT<E> {
 						newArr[i] = (E) arr[i]; 
 					}
 				}
-			arr = newArr;
+			arr = (E[]) newArr;
 			
 			
 
@@ -223,7 +229,7 @@ public class MyArrayList<E> implements ListADT<E> {
 						newArr[i] = (E) arr[i]; 
 					}
 				 }
-			arr = newArr;
+			arr = (E[]) newArr;
 			
 			
 		} catch(NullPointerException ex) {
