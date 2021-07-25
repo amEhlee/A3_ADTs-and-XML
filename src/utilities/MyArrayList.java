@@ -253,7 +253,9 @@ public class MyArrayList<E> implements ListADT<E> {
 	public boolean contains(E toFind) throws NullPointerException {
 		boolean contains = false;
 		try {
-			int size = arr.length;
+			if (toFind == null) {
+				throw new NullPointerException();
+			}
 			
 				for (int i = 0; i < arr.length; i++) {
 					if (toFind == (E) arr[i]) {
