@@ -138,7 +138,7 @@ public class MyDLLTests {
         assertFalse(DLL.contains("a"));
 
         // remove tail
-        System.out.println("removed= " + DLL.remove("f"));
+        DLL.remove("f");
         assertFalse(DLL.contains("f"));
     }
 
