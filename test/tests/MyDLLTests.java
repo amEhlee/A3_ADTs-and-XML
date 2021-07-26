@@ -37,12 +37,18 @@ public class MyDLLTests {
 		DLL2.clear();
 	}
 
+	/**
+	 * Test method for isEmpty().
+	 */
     @Test
     public void testIsEmpty() {
         assertTrue(DLL.isEmpty());
         assertEquals(0, DLL.size());
     }
 
+	/**
+	 * Test method for size().
+	 */
     @Test 
     public void testSize() {
         DLL.add("a");
@@ -52,6 +58,9 @@ public class MyDLLTests {
         assertEquals(3, DLL.size()); 
     }
 
+	/**
+	 * Test method for clear().
+	 */
     @Test
     public void testClear() {
         DLL.add("a");
@@ -63,6 +72,9 @@ public class MyDLLTests {
         assertEquals(0, DLL.size());
     }
 
+	/**
+	 * Test method for add().
+	 */
     @Test
     public void testAdd() {
         DLL.add("a");
@@ -73,6 +85,9 @@ public class MyDLLTests {
         assertEquals("a", DLL.get(0));
     }
 
+	/**
+	 * Test method for add(int).
+	 */
     @Test 
     public void testAddIndex() {
         DLL.add("a");
@@ -84,6 +99,9 @@ public class MyDLLTests {
         assertEquals("z", DLL.get(3));
     }
 
+	/**
+	 * Test method for addAll().
+	 */
     @Test
     public void testAddAll() {
         DLL2.add("c");
@@ -96,6 +114,9 @@ public class MyDLLTests {
         assertEquals(DLL.get(1), DLL2.get(2));
     }
 
+	/**
+	 * Test method for get().
+	 */
     @Test
     public void testGet() {
         DLL.add("a");
@@ -105,6 +126,9 @@ public class MyDLLTests {
         assertEquals("b", DLL.get(1));
     }
 
+	/**
+	 * Test method for remove(int).
+	 */
     @Test
     public void testRemoveIndex() {
         DLL.add("a");
@@ -129,6 +153,9 @@ public class MyDLLTests {
         assertFalse(DLL.contains("f"));
     }
 
+	/**
+	 * Test method for remove(E).
+	 */
     @Test
     public void testRemoveElement() {
         DLL.add("a");
@@ -153,6 +180,9 @@ public class MyDLLTests {
         assertFalse(DLL.contains("f"));
     }
 
+	/**
+	 * Test method for set().
+	 */
     @Test
     public void testSet() {
         DLL.add("a");
@@ -164,6 +194,9 @@ public class MyDLLTests {
 
     }
 
+	/**
+	 * Test method for contains().
+	 */
     @Test
     public void testContains() {
         DLL.add("a");
