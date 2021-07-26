@@ -11,10 +11,16 @@ public class MyQueue<E> implements QueueADT<E> {
 	@SuppressWarnings("unchecked")
     private E[] arr;
     private int size;
+    private final int MAXIMUM_SIZE;
 
     public MyQueue() {
         size = 0;
         arr = (E[]) new Object[size];
+        MAXIMUM_SIZE = 0;
+    }
+
+    public MyQueue(int MAXIMUM_SIZE) {
+        this.MAXIMUM_SIZE = MAXIMUM_SIZE;
     }
 
     public void enqueue(E toAdd) throws NullPointerException {
@@ -22,13 +28,15 @@ public class MyQueue<E> implements QueueADT<E> {
             throw new NullPointerException();
         }
 
-        Object[] newArr = new Object[size + 1];
-        for (int i = 0; i < size; i++) {
-            newArr[i] = arr[i];
+        if (!isFull()) {
+            Object[] newArr = new Object[size + 1];
+            for (int i = 0; i < size; i++) {
+                newArr[i] = arr[i];
+            }
+            newArr[size] = toAdd;
+            arr = (E[]) newArr;
+            size++;
         }
-        newArr[size] = toAdd;
-        arr = (E[]) newArr;
-        size++;
     }
 
 
@@ -138,10 +146,17 @@ public class MyQueue<E> implements QueueADT<E> {
 	}
 
 	@Override
-	public boolean isFull() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    public boolean isFull() {
+        if (MAXIMUM_SIZE == 0) { // unlimited queue
+            return false;
+        }
+        
+        if (size >= MAXIMUM_SIZE) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 	@Override
 	public int size() {

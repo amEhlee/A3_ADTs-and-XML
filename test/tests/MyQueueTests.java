@@ -16,8 +16,8 @@ class MyQueueTests {
 
 	@BeforeEach
 	void setUp() throws Exception {		
-		list1 = new MyQueue<>();
-		list2 = new MyQueue<>();
+		list1 = new MyQueue<>(); // unlimited
+		list2 = new MyQueue<>(4); // limited
 	}
 
 	@AfterEach
@@ -124,12 +124,37 @@ class MyQueueTests {
 
 	@Test
 	void testIsFull() {
-		fail("Not yet implemented");
+		//unlimited list
+		assertFalse(list1.isFull());
+		list1.enqueue("a");
+		assertFalse(list1.isFull());
+		
+		// limited(4) list
+		assertFalse(list2.isFull());
+		list2.enqueue("a");
+		list2.enqueue("b");
+		list2.enqueue("c");
+		assertFalse(list2.isFull());
+		list2.enqueue("d");
+		assertTrue(list2.isFull());
 	}
 
 	@Test
 	void testSize() {
-		fail("Not yet implemented");
+		assertEquals(0, list1.size());
+		list1.enqueue("a");
+		list1.enqueue("b");
+		list1.enqueue("c");
+		assertEquals(3, list1.size());
+		try {
+			list1.dequeue();
+			assertEquals(2, list1.size());
+		} catch (EmptyQueueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		list1.dequeueAll();
+		assertEquals(0, list1.size());
 	}
 
 }
