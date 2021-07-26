@@ -53,25 +53,18 @@ public class MyQueue<E> implements QueueADT<E> {
 
 	@Override
 	public E peek() throws EmptyQueueException {
-		E value = null;
-		try {
-			if (arr.length <= 0) {
-				throw new EmptyStackException();
-			}
+        if (size <= 0) {
+            throw new EmptyStackException();
+        }
 
-			value = arr[0];
-
-		} catch (EmptyStackException ex) {
-			ex.printStackTrace();
-		}
-		return value;
+        return arr[0];
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void dequeueAll() {
-		E[] temp = (E[]) new Object[1];
-		arr = temp;
+        arr = (E[]) new Object[0];
+        size = 0;
 	}
 
 	@Override

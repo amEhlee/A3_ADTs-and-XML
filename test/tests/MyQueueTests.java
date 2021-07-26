@@ -70,7 +70,16 @@ class MyQueueTests {
 
 	@Test
 	void testDequeueAll() {
-		fail("Not yet implemented");
+		list1.enqueue("a");
+		list1.enqueue("b");
+		list1.dequeueAll();
+		list1.enqueue("c");
+		try {
+			assertTrue(list1.peek().equals("c"));
+		} catch (EmptyQueueException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Test
