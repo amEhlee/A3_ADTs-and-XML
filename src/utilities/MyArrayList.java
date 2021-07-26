@@ -1,8 +1,7 @@
 package utilities;
 
+import java.lang.reflect.Array;
 import java.util.NoSuchElementException;
-
-import com.sun.org.apache.bcel.internal.generic.IF_ACMPEQ;
 
 import adts.Iterator;
 import adts.ListADT;
@@ -255,7 +254,6 @@ public class MyArrayList<E> implements ListADT<E> {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean contains(E toFind) throws NullPointerException {
 		boolean contains = false;
@@ -276,14 +274,15 @@ public class MyArrayList<E> implements ListADT<E> {
 		return contains;
 	}
 
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] toHold) throws NullPointerException {
-		int holdSize = toHold.length;		
+		int holdSize = toHold.length;	
 		if (holdSize < size) {
-			toHold = (E[]) new Object[size];
+			toHold = (E[]) Array.newInstance(toHold.getClass().getComponentType(), size);
 		}
-		else if (holdSize > size) {
+		if (holdSize > size) {
 			toHold[size] = null;
 		}
 		
@@ -293,13 +292,13 @@ public class MyArrayList<E> implements ListADT<E> {
 			}
 			
 		    for (int i = 0; i < size; i++) {
-		    	toHold[i] = arr[i];
+		    	toHold[i] = (E) arr[i];
 		    }
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
 		}
 
-		return (E[]) toHold;
+		return toHold;
 	}
 
 

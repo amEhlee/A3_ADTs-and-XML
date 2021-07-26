@@ -178,6 +178,7 @@ public class MyArrayListTests {
 		assertTrue(list1.contains("Test1"));
 	}
 
+	
 	/**
 	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is less.
 	 */
@@ -186,13 +187,13 @@ public class MyArrayListTests {
 		list1.add("Test1");
 		list1.add("Test2");
 		list1.add("Test3");
-		String[] output = new String[2];
-		output = list1.toArray(output);
+		String[] output = list1.toArray(new String[2]);
 		assertTrue(output.length == list1.size());
 		assertTrue(output[0].equals("Test1"));
 		assertTrue(output[1].equals("Test2"));
 		assertTrue(output[2].equals("Test3"));
 	}
+	
 	
 	/**
 	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is adequate.
@@ -230,7 +231,6 @@ public class MyArrayListTests {
 	/**
 	 * Test method for {@link utilities.MyArrayList#toArray()}.
 	 */
-	@SuppressWarnings("unused")
 	@Test
 	public void testToArray() {
 		list1.add("Test1");
