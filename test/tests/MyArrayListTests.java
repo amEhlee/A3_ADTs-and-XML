@@ -5,10 +5,13 @@ package tests;
 
 import static org.junit.Assert.*;
 
+
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import adts.Iterator;
 import adts.ListADT;
 import utilities.MyArrayList;
 
@@ -320,11 +323,11 @@ public class MyArrayListTests {
 	public void testIteratorNext() {
 		list1.add("Test1");
 		list1.add("Test2");
-		System.out.println(list1.iterator().next());
-		System.out.println(list1.iterator().next());
+		Iterator<String> it = list1.iterator();
 		
-		//assertTrue(list1.iterator().next().equals("Test1"));
-		//assertTrue(list1.iterator().next().equals("Test2"));
+		
+		assertTrue(it.next().equals("Test1"));
+		assertTrue(it.next().equals("Test2"));
 	}
 
 

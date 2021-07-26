@@ -9,6 +9,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import adts.Iterator;
 import adts.StackADT;
 import utilities.MyStack;
 
@@ -169,6 +170,32 @@ class MyStackTests {
 		assertTrue(output[0].equals("Test1"));
 		assertTrue(output[1].equals("Test2"));
 		assertTrue(output[2].equals("Test3"));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyStack#iterator().hasNext()}.
+	 */
+	@Test
+	public void testIteratorHasNext() {
+		list1.push("Test1");
+		list1.push("Test2");
+		assertTrue(list1.iterator().hasNext());
+		list1.clear();
+		assertFalse(list1.iterator().hasNext());
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyStack#iterator()}.
+	 */
+	@Test
+	public void testIteratorNext() {
+		list1.push("Test1");
+		list1.push("Test2");
+		Iterator<String> it = list1.iterator();
+		
+		
+		assertTrue(it.next().equals("Test1"));
+		assertTrue(it.next().equals("Test2"));
 	}
 
 }

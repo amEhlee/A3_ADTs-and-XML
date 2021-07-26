@@ -14,6 +14,7 @@ public class MyArrayList<E> implements ListADT<E> {
 	private static final long serialVersionUID = -380906261708501589L;
 	private E[] arr;
 	private int size;
+
 	
 	@SuppressWarnings("unchecked")
 	public MyArrayList() {
@@ -338,8 +339,7 @@ public class MyArrayList<E> implements ListADT<E> {
 			@Override
 			public E next() throws NoSuchElementException { //iterates iterator
 				try {
-					index = index++;
-					return arr[index]; //Moves the pointer one index forward
+					return arr[index++]; //Moves the pointer one index forward
 				} catch (NoSuchElementException ex){ //catches errors when there is no index past the iteration
 					ex.printStackTrace();
 				}

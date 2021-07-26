@@ -95,7 +95,7 @@ class MyQueueTests {
 
 
 	/**
-	 * Test method for iterator().hasNext().
+	 * Test method for {@link utilities.MyQueuet#iterator().hasNext()}.
 	 */
 	@Test
 	public void testIteratorHasNext() {
@@ -107,7 +107,7 @@ class MyQueueTests {
 	}
 	
 	/**
-	 * Test method for iterator().next().
+	 * Test method for {@link utilities.MyQueue#iterator()}.
 	 */
 	@Test
 	public void testIteratorNext() {

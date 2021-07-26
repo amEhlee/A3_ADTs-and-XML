@@ -2,6 +2,7 @@ package utilities;
 
 import java.lang.reflect.Array;
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 import adts.Iterator;
 import adts.StackADT;
@@ -165,8 +166,25 @@ public class MyStack<E> implements StackADT<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<E>() {			
+			
+			private int index = 0; //Current Index pointer
+			
+			@Override
+			public boolean hasNext() {
+				return (index < size && arr[index] != null); //checks if the next is not null or the the index is less than the maximum index and returns true or false
+			}
+
+			@Override
+			public E next() throws NoSuchElementException { //iterates iterator
+				try {
+					return arr[index++]; //Moves the pointer one index forward
+				} catch (NoSuchElementException ex){ //catches errors when there is no index past the iteration
+					ex.printStackTrace();
+				}
+				return null;
+			}
+		};
 	}
 
 	@SuppressWarnings("unchecked")
