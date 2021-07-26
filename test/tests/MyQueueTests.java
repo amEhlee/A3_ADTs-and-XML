@@ -84,7 +84,11 @@ class MyQueueTests {
 
 	@Test
 	void testIsEmpty() {
-		fail("Not yet implemented");
+		assertTrue(list1.isEmpty());
+		list1.enqueue("something");
+		assertFalse(list1.isEmpty());
+		list1.dequeueAll();
+		assertTrue(list1.isEmpty());
 	}
 
 	@Test

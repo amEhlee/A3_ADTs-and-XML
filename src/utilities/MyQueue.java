@@ -69,7 +69,7 @@ public class MyQueue<E> implements QueueADT<E> {
 
 	@Override
 	public boolean isEmpty() {
-		if (arr.length == 0) {
+        if (size == 0) {
 			return true;
 		}
 		return false;
