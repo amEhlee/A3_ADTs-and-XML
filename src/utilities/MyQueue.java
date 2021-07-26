@@ -1,5 +1,6 @@
 package utilities;
 
+import java.lang.reflect.Array;
 import java.util.EmptyStackException;
 
 import adts.Iterator;
@@ -12,6 +13,7 @@ public class MyQueue<E> implements QueueADT<E> {
     private E[] arr;
     private int size;
     private final int MAXIMUM_SIZE;
+    private int index = 0; //Current Index pointer
 
     public MyQueue() {
         size = 0;
@@ -83,11 +85,24 @@ public class MyQueue<E> implements QueueADT<E> {
 		return false;
 	}
 
-	@Override
-	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public Iterator<E> iterator() {
+        return new Iterator<E>() {
+            @Override
+            public boolean hasNext() {
+                return (index < size && arr[index] != null); //checks if the next is not null or the the index is less than the maximum index and returns true or false
+            }
+
+            @Override
+            public E next() { //iterates iterator
+                try {
+                    return arr[++index]; //Moves the pointer one index forward
+                } catch (Exception ex){ //catches errors when there is no index past the iteration
+                    return null;
+                }
+            }
+        };
+    }
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -109,41 +124,41 @@ public class MyQueue<E> implements QueueADT<E> {
 		return exact;
 	}
 
-	@Override
-	public Object[] toArray() {
-		int size = arr.length;
-		Object[] newArr = new Object[size];		
-		for (int i = 0; i < arr.length; i++) {
-		    newArr[i] = arr[i];
-		}
+    @Override
+    public Object[] toArray() {
+        Object[] newArr = new Object[size];
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[i];
+        }
 
-		return newArr;
-	}
+        return newArr;
+    }
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public E[] toArray(E[] holder) throws NullPointerException {
-		int size = holder.length;
-		
-		if (size < arr.length) {
-			size = arr.length;
-		}
-		
-		E[] newArr = (E[]) new Object[size];
-		try {
-			if (size == 0) {
-				throw new NullPointerException();
-			}
-			
-		    for (int i = 0; i < holder.length; i++) {
-		    	newArr[i] = arr[i];
-		    }
-		} catch(NullPointerException ex) {
-			ex.printStackTrace();
-		}
+    @SuppressWarnings("unchecked")
+    @Override
+    public E[] toArray(E[] holder) throws NullPointerException {
+        int holdSize = holder.length;
+        if (holdSize < size) {
+            holder = (E[]) Array.newInstance(holder.getClass().getComponentType(), size);
+        }
+        if (holdSize > size) {
+            holder[size] = null;
+        }
 
-		return newArr;
-	}
+        try {
+            if (size == 0) {
+                throw new NullPointerException();
+            }
+
+            for (int i = 0; i < size; i++) {
+                holder[i] = (E) arr[i];
+            }
+        } catch(NullPointerException ex) {
+            ex.printStackTrace();
+        }
+
+        return holder;
+    }
 
 	@Override
     public boolean isFull() {

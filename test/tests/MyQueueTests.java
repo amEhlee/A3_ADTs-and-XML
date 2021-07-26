@@ -1,5 +1,7 @@
 package tests;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterEach;
@@ -91,9 +93,30 @@ class MyQueueTests {
 		assertTrue(list1.isEmpty());
 	}
 
+
+	/**
+	 * Test method for iterator().hasNext().
+	 */
 	@Test
-	void testIterator() {
-		fail("Not yet implemented");
+	public void testIteratorHasNext() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		assertTrue(list1.iterator().hasNext());
+		list1.dequeueAll();
+		assertFalse(list1.iterator().hasNext());
+	}
+	
+	/**
+	 * Test method for iterator().next().
+	 */
+	@Test
+	public void testIteratorNext() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		list1.enqueue("Test3");
+		
+		assertTrue(list1.iterator().next().equals("Test2"));
+		assertTrue(list1.iterator().next().equals("Test3"));
 	}
 
 	@Test
@@ -117,11 +140,70 @@ class MyQueueTests {
 		assertFalse(list1.equals(list2));
 	}
 
+	/**
+	 * Test method toArray(E[]). When size is less.
+	 */
 	@Test
-	void testToArray() {
-		fail("Not yet implemented");
+	public void testToArrayEArraySmallSize() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		list1.enqueue("Test3");
+		String[] output = list1.toArray(new String[2]);
+		assertTrue(output.length == list1.size());
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
 	}
+	
+	
+	/**
+	 * Test method for toArray(E[]). When size is adequate.
+	 */
+	@Test
+	public void testToArrayEArrayBigSize() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		list1.enqueue("Test3");
+		String[] output = new String[6];
+		output = list1.toArray(output);
+		assertTrue(output.length == 6);
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
+	}
+	
+	/**
+	 * Test method for toArray(E[]). When size is equal.
+	 */
+	@Test
+	public void testToArrayEArrayEqualSize() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		list1.enqueue("Test3");
+		String[] output = new String[3];
+		output = list1.toArray(output);
+		assertTrue(output.length == list1.size());
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
+	}
+	
 
+	/**
+	 * Test method for toArray().
+	 */
+	@Test
+	public void testToArray() {
+		list1.enqueue("Test1");
+		list1.enqueue("Test2");
+		list1.enqueue("Test3");
+		Object[] output = list1.toArray();
+		assertTrue(output.length == 3);
+		assertTrue(output[0].equals("Test1"));
+		assertTrue(output[1].equals("Test2"));
+		assertTrue(output[2].equals("Test3"));
+	}
+	
 	@Test
 	void testIsFull() {
 		//unlimited list
