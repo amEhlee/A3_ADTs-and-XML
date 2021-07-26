@@ -280,6 +280,9 @@ public class MyDLL<E> implements ListADT<E> {
 
 			@Override
 			public boolean hasNext() {
+				if (head == null || isEmpty()) {
+					return false;
+				}
 				return (pointer != tail && pointer != null);
 			}
 
@@ -287,6 +290,10 @@ public class MyDLL<E> implements ListADT<E> {
 			@Override
 			public E next() throws NoSuchElementException {
 				try {
+					if (hasNext() == false) {
+						throw new NoSuchElementException();
+					}
+					
 					E data = (E) pointer.getData();
 					pointer = pointer.getNext();
 					return data;

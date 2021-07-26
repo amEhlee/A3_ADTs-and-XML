@@ -186,6 +186,10 @@ public class MyDLLTests {
 		assertTrue(it.hasNext());
 		DLL.clear();
 		assertFalse(it.hasNext());
+		DLL.add("Test1");
+		assertTrue(it.hasNext());
+		DLL.clear();
+		assertFalse(it.hasNext());
 	}
 	
 	/**
