@@ -280,7 +280,7 @@ public class MyDLL<E> implements ListADT<E> {
 
 			@Override
 			public boolean hasNext() {
-				return (pointer.getNext() != tail && pointer != null);
+				return (pointer != tail && pointer != null);
 			}
 
 			@SuppressWarnings("unchecked")

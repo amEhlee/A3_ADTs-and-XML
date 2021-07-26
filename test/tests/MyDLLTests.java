@@ -175,7 +175,7 @@ public class MyDLLTests {
     }
     
 	/**
-	 * Test method for {@link utilities.MyArrayList#iterator().hasNext()}.
+	 * Test method for hasNext().
 	 */
 	@Test
 	public void testIteratorHasNext() {
@@ -185,12 +185,11 @@ public class MyDLLTests {
 		
 		assertTrue(it.hasNext());
 		DLL.clear();
-		System.out.println(it.hasNext());
-		//assertFalse(it.hasNext());
+		assertFalse(it.hasNext());
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#iterator()}.
+	 * Test method for iterator().
 	 */
 	@Test
 	public void testIteratorNext() {
