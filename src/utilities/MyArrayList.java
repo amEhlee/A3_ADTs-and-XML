@@ -339,6 +339,9 @@ public class MyArrayList<E> implements ListADT<E> {
 			@Override
 			public E next() throws NoSuchElementException { //iterates iterator
 				try {
+					if (hasNext() == false) {
+						throw new NoSuchElementException();
+					}
 					return arr[index++]; //Moves the pointer one index forward
 				} catch (NoSuchElementException ex){ //catches errors when there is no index past the iteration
 					ex.printStackTrace();

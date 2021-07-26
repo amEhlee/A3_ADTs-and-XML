@@ -2,6 +2,7 @@ package utilities;
 
 import java.lang.reflect.Array;
 import java.util.EmptyStackException;
+import java.util.NoSuchElementException;
 
 import adts.Iterator;
 import adts.QueueADT;
@@ -98,6 +99,9 @@ public class MyQueue<E> implements QueueADT<E> {
             @Override
             public E next() { //iterates iterator
                 try {
+					if (hasNext() == false) {
+						throw new NoSuchElementException();
+					}
                     return arr[index++]; //Moves the pointer one index forward
                 } catch (Exception ex){ //catches errors when there is no index past the iteration
                     return null;
