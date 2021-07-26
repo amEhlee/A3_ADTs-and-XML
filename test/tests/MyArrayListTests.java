@@ -94,16 +94,18 @@ public class MyArrayListTests {
 	 */
 	@Test
 	public void testAddAll() {
-		// test if second array is initally empty
-		assertTrue(list2.isEmpty());
 		
-		list1.add("test1");
-		list1.add("test2");
-		list1.add("test3");
+		list2.add("test1");
+		list2.add("test2");
+		list2.add("test3");
 		
-		// Check if it is no longer empty and contains 3 elements 
-		assertFalse(list2.isEmpty());
-		assertEquals(3, list2.size());
+		list1.addAll(list2);
+		// Check if first list is empty 
+		assertFalse(list1.isEmpty());
+		assertEquals(3, list1.size()); //Check if the contents of list 2 where added
+		assertTrue(list1.get(0).equals("test1"));
+		assertTrue(list1.get(1).equals("test2"));
+		assertTrue(list1.get(2).equals("test3"));
 		
 	}
 
@@ -244,11 +246,30 @@ public class MyArrayListTests {
 	}
 
 	/**
+	 * Test method for {@link utilities.MyArrayList#iterator().hasNext()}.
+	 */
+	@Test
+	public void testIteratorHasNext() {
+		list1.add("Test1");
+		list1.add("Test2");
+		assertTrue(list1.iterator().hasNext());
+		list1.clear();
+		assertFalse(list1.iterator().hasNext());
+	}
+	
+	/**
 	 * Test method for {@link utilities.MyArrayList#iterator()}.
 	 */
 	@Test
-	public void testIterator() {
-		fail("Not yet implemented");
+	public void testIteratorNext() {
+		list1.add("Test1");
+		list1.add("Test2");
+		System.out.println(list1.iterator().next());
+		System.out.println(list1.iterator().next());
+		
+		//assertTrue(list1.iterator().next().equals("Test1"));
+		//assertTrue(list1.iterator().next().equals("Test2"));
 	}
+
 
 }
