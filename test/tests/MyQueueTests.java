@@ -10,6 +10,7 @@ class MyQueueTests {
 
 	@BeforeEach
 	void setUp() throws Exception {
+		
 	}
 
 	@AfterEach
