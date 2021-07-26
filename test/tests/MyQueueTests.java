@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import adts.Iterator;
 import adts.QueueADT;
 import exceptions.EmptyQueueException;
 import utilities.MyQueue;
@@ -95,28 +96,30 @@ class MyQueueTests {
 
 
 	/**
-	 * Test method for {@link utilities.MyQueuet#iterator().hasNext()}.
+	 * Test method for Test method for MyQueue#iterator() method..
 	 */
 	@Test
 	public void testIteratorHasNext() {
 		list1.enqueue("Test1");
 		list1.enqueue("Test2");
-		assertTrue(list1.iterator().hasNext());
+		Iterator<String> it = list1.iterator();
+		assertTrue(it.hasNext());
 		list1.dequeueAll();
-		assertFalse(list1.iterator().hasNext());
+		assertFalse(it.hasNext());
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyQueue#iterator()}.
+	 * Test method for MyQueue#iterator() method.
 	 */
 	@Test
 	public void testIteratorNext() {
 		list1.enqueue("Test1");
 		list1.enqueue("Test2");
 		list1.enqueue("Test3");
+		Iterator<String> it = list1.iterator();
 		
-		assertTrue(list1.iterator().next().equals("Test2"));
-		assertTrue(list1.iterator().next().equals("Test3"));
+		assertTrue(it.next().equals("Test1"));
+		assertTrue(it.next().equals("Test2"));
 	}
 
 	@Test

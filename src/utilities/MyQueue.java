@@ -13,7 +13,7 @@ public class MyQueue<E> implements QueueADT<E> {
     private E[] arr;
     private int size;
     private final int MAXIMUM_SIZE;
-    private int index = 0; //Current Index pointer
+
 
     public MyQueue() {
         size = 0;
@@ -88,6 +88,8 @@ public class MyQueue<E> implements QueueADT<E> {
     @Override
     public Iterator<E> iterator() {
         return new Iterator<E>() {
+            private int index = 0; //Current Index pointer
+        	
             @Override
             public boolean hasNext() {
                 return (index < size && arr[index] != null); //checks if the next is not null or the the index is less than the maximum index and returns true or false
@@ -96,7 +98,7 @@ public class MyQueue<E> implements QueueADT<E> {
             @Override
             public E next() { //iterates iterator
                 try {
-                    return arr[++index]; //Moves the pointer one index forward
+                    return arr[index++]; //Moves the pointer one index forward
                 } catch (Exception ex){ //catches errors when there is no index past the iteration
                     return null;
                 }

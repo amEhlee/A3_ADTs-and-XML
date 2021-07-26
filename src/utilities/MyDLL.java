@@ -280,16 +280,16 @@ public class MyDLL<E> implements ListADT<E> {
 
 			@Override
 			public boolean hasNext() {
-				return (pointer != tail && pointer != null);
+				return (pointer.getNext() != tail && pointer != null);
 			}
 
 			@SuppressWarnings("unchecked")
 			@Override
 			public E next() throws NoSuchElementException {
-				// TODO Auto-generated method stub
 				try {
+					E data = (E) pointer.getData();
 					pointer = pointer.getNext();
-					return (E) pointer.getData();
+					return data;
 				} catch(NoSuchElementException e) {
 					e.printStackTrace();
 				}

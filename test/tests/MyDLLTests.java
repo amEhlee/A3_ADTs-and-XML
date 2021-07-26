@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 
+import adts.Iterator;
 import adts.ListADT;
 import utilities.MyDLL;
 
@@ -172,5 +173,34 @@ public class MyDLLTests {
         assertTrue(DLL.contains("a"));
         assertTrue(DLL.contains("b"));
     }
+    
+	/**
+	 * Test method for {@link utilities.MyArrayList#iterator().hasNext()}.
+	 */
+	@Test
+	public void testIteratorHasNext() {
+		DLL.add("Test1");
+		DLL.add("Test2");
+		Iterator<String> it = DLL.iterator();
+		
+		assertTrue(it.hasNext());
+		DLL.clear();
+		System.out.println(it.hasNext());
+		//assertFalse(it.hasNext());
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#iterator()}.
+	 */
+	@Test
+	public void testIteratorNext() {
+		DLL.add("Test1");
+		DLL.add("Test2");
+		Iterator<String> it = DLL.iterator();
+		
+		
+		assertTrue(it.next().equals("Test1"));
+		assertTrue(it.next().equals("Test2"));
+	}
 
 }

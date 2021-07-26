@@ -311,9 +311,11 @@ public class MyArrayListTests {
 	public void testIteratorHasNext() {
 		list1.add("Test1");
 		list1.add("Test2");
-		assertTrue(list1.iterator().hasNext());
+		Iterator<String> it = list1.iterator();
+		
+		assertTrue(it.hasNext());
 		list1.clear();
-		assertFalse(list1.iterator().hasNext());
+		assertFalse(it.hasNext());
 	}
 	
 	/**
