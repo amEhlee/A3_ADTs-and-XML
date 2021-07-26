@@ -98,7 +98,23 @@ class MyQueueTests {
 
 	@Test
 	void testEquals() {
-		fail("Not yet implemented");
+		list1.enqueue("a");
+		list1.enqueue("b");
+		list2.enqueue("a");
+
+		// number of their items is different
+		assertFalse(list1.equals(list2));
+
+		list2.enqueue("b");
+		// now number is the same
+		assertTrue(list1.equals(list2));
+
+		list1.enqueue("c");
+		list1.enqueue("d");
+		list2.enqueue("d");
+		list2.enqueue("c");
+		// number's the same but the order's different
+		assertFalse(list1.equals(list2));
 	}
 
 	@Test
