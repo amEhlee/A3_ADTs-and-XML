@@ -20,6 +20,8 @@ public class MyArrayListTests {
 
 	ListADT<String> list1;
 	ListADT<String> list2;
+	ListADT<Integer> list3;
+	ListADT<Double> list4;
 	/**
 	 * @throws java.lang.Exception
 	 */
@@ -27,6 +29,8 @@ public class MyArrayListTests {
 	public void setUp() throws Exception {
 		list1 = new MyArrayList<>();
 		list2 = new MyArrayList<>();
+		list3 = new MyArrayList<>();
+		list4 = new MyArrayList<>();
 	}
 
 	/**
@@ -36,6 +40,8 @@ public class MyArrayListTests {
 	public void tearDown() throws Exception {
 		list1 = null;
 		list2 = null;
+		list3 = null;
+		list4 = null;
 	}
 
 	/**
@@ -49,9 +55,35 @@ public class MyArrayListTests {
 		
 		assertEquals(3, list1.size());
 	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#size()}.
+	 */
+	@Test
+	public void testInt() {
+		list3.add(0);
+		list3.add(1);
+		list3.add(2);
+		
+		assertEquals(3, list3.size());
+		assertTrue(list3.get(2) == 2);
+	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#clear()}.
+	 * Test method for {@link utilities.MyArrayList#size()}.
+	 */
+	@Test
+	public void testDouble() {
+		list4.add(0.1);
+		list4.add(0.2);
+		list4.add(0.3);
+		
+		assertEquals(3, list4.size());
+		assertTrue(list4.get(2) == 0.3);
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#clear()} and {@link utilities.MyArrayList#empty()}.
 	 */
 	@Test
 	public void testClearEmptyList() {
@@ -119,6 +151,30 @@ public class MyArrayListTests {
 		
 		assertTrue(list1.get(0).equals("Test1"));
 		assertTrue(list1.get(1).equals("Test2"));
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#get(int)}.
+	 */
+	@Test
+	public void testGetInt() {
+		list3.add(1);
+		list3.add(2);
+		
+		assertTrue(list3.get(0) == 1);
+		assertTrue(list3.get(1) == 2);
+	}
+	
+	/**
+	 * Test method for {@link utilities.MyArrayList#get(int)}.
+	 */
+	@Test
+	public void testGetDouble() {
+		list4.add(1.1);
+		list4.add(1.2);
+		
+		assertTrue(list4.get(0) == 1.1);
+		assertTrue(list4.get(1) == 1.2);
 	}
 
 	/**

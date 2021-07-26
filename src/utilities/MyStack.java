@@ -1,5 +1,6 @@
 package utilities;
 
+import java.lang.reflect.Array;
 import java.util.EmptyStackException;
 
 import adts.Iterator;
@@ -9,6 +10,7 @@ public class MyStack<E> implements StackADT<E> {
 
 	@SuppressWarnings("unchecked")
 	E[] arr = (E[]) new Object[0];
+	private int size = 0;
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -19,8 +21,14 @@ public class MyStack<E> implements StackADT<E> {
 			}
 
 			E[] temp = (E[]) new Object[arr.length + 1];
+			
+			for (int i = 0; i < size; i++) {
+				temp[i] = (E) arr[i];
+			}
+			
 			temp[temp.length - 1] = toAdd;
 			arr = temp;
+			size = arr.length;
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
@@ -32,16 +40,17 @@ public class MyStack<E> implements StackADT<E> {
 	public E pop() throws EmptyStackException {
 		E popped = null;
 		try {
-			if (arr.length <= 0) {
+			if (size <= 0) {
 				throw new EmptyStackException();
 			}
 
-			E[] temp = (E[]) new Object[arr.length - 1];
+			Object[] temp = new Object[size - 1];
 			for (int i = 0; i < temp.length; i++) {
-				temp[i] = arr[i];
+				temp[i] = (E) arr[i];
 			}
-			popped = arr[arr.length - 1];
-			arr = temp;
+			popped = arr[size - 1];
+			arr = (E[]) temp;
+			size = arr.length;
 		} catch (EmptyStackException ex) {
 			ex.printStackTrace();
 		}
@@ -52,11 +61,11 @@ public class MyStack<E> implements StackADT<E> {
 	public E peek() throws EmptyStackException {
 		E value = null;
 		try {
-			if (arr.length <= 0) {
+			if (size <= 0) {
 				throw new EmptyStackException();
 			}
 
-			value = arr[arr.length - 1];
+			value = (E) arr[size - 1];
 
 		} catch (EmptyStackException ex) {
 			ex.printStackTrace();
@@ -67,13 +76,14 @@ public class MyStack<E> implements StackADT<E> {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void clear() {
-		E[] temp = (E[]) new Object[1];
+		E[] temp = (E[]) new Object[0];
 		arr = temp;
+		size = arr.length;
 	}
 
 	@Override
 	public boolean isEmpty() {
-		if (arr.length == 0) {
+		if (size == 0) {
 			return true;
 		}
 		return false;
@@ -81,37 +91,38 @@ public class MyStack<E> implements StackADT<E> {
 
 	@Override
 	public Object[] toArray() {
-		int size = arr.length;
 		Object[] newArr = new Object[size];		
-		for (int i = 0; i < arr.length; i++) {
+		for (int i = 0; i < size; i++) {
 		    newArr[i] = arr[i];
 		}
 
 		return newArr;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public E[] toArray(E[] holder) throws NullPointerException {
-		int size = holder.length;
-		
-		if (size < arr.length) {
-			size = arr.length;
+		int holdSize = holder.length;	
+		if (holdSize < size) {
+			holder = (E[]) Array.newInstance(holder.getClass().getComponentType(), size);
+		}
+		if (holdSize > size) {
+			holder[size] = null;
 		}
 		
-		E[] newArr = (E[]) new Object[size];
 		try {
 			if (size == 0) {
 				throw new NullPointerException();
 			}
 			
-		    for (int i = 0; i < holder.length; i++) {
-		    	newArr[i] = arr[i];
+		    for (int i = 0; i < size; i++) {
+		    	holder[i] = (E) arr[i];
 		    }
 		} catch(NullPointerException ex) {
 			ex.printStackTrace();
 		}
 
-		return newArr;
+		return holder;
 	}
 
 	@Override
@@ -122,7 +133,7 @@ public class MyStack<E> implements StackADT<E> {
 				throw new NullPointerException();
 			}
 			for (int i = 0; i < arr.length; i++) {
-				if (toFind == arr[i]) {
+				if (toFind == (E) arr[i]) {
 					contains = true;
 				}
 			}
@@ -141,7 +152,7 @@ public class MyStack<E> implements StackADT<E> {
 				throw new NullPointerException();
 			}
 			for (int i = 0; i < arr.length; i++) {
-				if (toFind == arr[i]) {
+				if (toFind == (E) arr[i]) {
 					distance = i + 1;
 				}
 			}
@@ -149,7 +160,7 @@ public class MyStack<E> implements StackADT<E> {
 		} catch (NullPointerException ex) {
 			ex.printStackTrace();
 		}
-		return distance;
+		return size - distance;
 	}
 
 	@Override
