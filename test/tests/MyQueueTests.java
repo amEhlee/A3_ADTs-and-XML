@@ -15,7 +15,7 @@ class MyQueueTests {
 	QueueADT<String> list2;
 
 	@BeforeEach
-	void setUp() throws Exception {
+	void setUp() throws Exception {		
 		list1 = new MyQueue<>();
 		list2 = new MyQueue<>();
 	}
