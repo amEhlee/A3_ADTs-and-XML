@@ -28,7 +28,9 @@ class MyQueueTests {
 		list1 = null;
 		list2 = null;
 	}
-
+	/**
+	 * Test method for Test method for enqueue() method.
+	 */
 	@Test
 	void testEnqueue() {
 		list1.enqueue("a");
@@ -40,6 +42,9 @@ class MyQueueTests {
 		}
 	}
 
+	/**
+	 * Test method for Test method for dequeue() method.
+	 */
 	@Test
 	void testDequeue() {
         list1.enqueue("a");
@@ -55,6 +60,9 @@ class MyQueueTests {
         }
 	}
 
+	/**
+	 * Test method for Test method for peek() method.
+	 */
 	@Test
 	void testPeek() {
         try {
@@ -71,6 +79,9 @@ class MyQueueTests {
         }
 	}
 
+	/**
+	 * Test method for Test method for dequeueAll() method.
+	 */
 	@Test
 	void testDequeueAll() {
 		list1.enqueue("a");
@@ -85,6 +96,9 @@ class MyQueueTests {
 		}
 	}
 
+	/**
+	 * Test method for Test method for isEmpty() method.
+	 */
 	@Test
 	void testIsEmpty() {
 		assertTrue(list1.isEmpty());
@@ -96,7 +110,7 @@ class MyQueueTests {
 
 
 	/**
-	 * Test method for Test method for MyQueue#iterator() method..
+	 * Test method for Test method for iterator() method.
 	 */
 	@Test
 	public void testIteratorHasNext() {
@@ -109,7 +123,7 @@ class MyQueueTests {
 	}
 	
 	/**
-	 * Test method for MyQueue#iterator() method.
+	 * Test method for iterator() method.
 	 */
 	@Test
 	public void testIteratorNext() {
@@ -122,6 +136,9 @@ class MyQueueTests {
 		assertTrue(it.next().equals("Test2"));
 	}
 
+	/**
+	 * Test method for Test method for equals() method
+	 */
 	@Test
 	void testEquals() {
 		list1.enqueue("a");
@@ -207,6 +224,9 @@ class MyQueueTests {
 		assertTrue(output[2].equals("Test3"));
 	}
 	
+	/**
+	 * Test method for Test method for isFull() method.
+	 */
 	@Test
 	void testIsFull() {
 		//unlimited list
@@ -224,6 +244,9 @@ class MyQueueTests {
 		assertTrue(list2.isFull());
 	}
 
+	/**
+	 * Test method for Test method for size() method.
+	 */
 	@Test
 	void testSize() {
 		assertEquals(0, list1.size());

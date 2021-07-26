@@ -48,7 +48,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#size()}.
+	 * Test method for size().
 	 */
 	@Test
 	public void testSize() {
@@ -60,7 +60,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#size()}.
+	 * Test method for size().
 	 */
 	@Test
 	public void testInt() {
@@ -73,7 +73,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#size()}.
+	 * Test method for size().
 	 */
 	@Test
 	public void testDouble() {
@@ -86,7 +86,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#clear()} and {@link utilities.MyArrayList#empty()}.
+	 * Test method for clear() and empty().
 	 */
 	@Test
 	public void testClearEmptyList() {
@@ -103,7 +103,7 @@ public class MyArrayListTests {
 		assertTrue(list1.isEmpty());
 	}
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(int, java.lang.Object)}.
+	 * Test method for add(int, java.lang.Object).
 	 */
 	@Test
 	public void testAddIntE() {
@@ -116,7 +116,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#add(java.lang.Object)}.
+	 * Test method for add(java.lang.Object).
 	 */
 	@Test
 	public void testAddE() {
@@ -125,7 +125,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#addAll(adts.ListADT)}.
+	 * Test method for addAll(adts.ListADT).
 	 */
 	@Test
 	public void testAddAll() {
@@ -145,7 +145,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#get(int)}.
+	 * Test method for get(int).
 	 */
 	@Test
 	public void testGet() {
@@ -157,7 +157,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#get(int)}.
+	 * Test method for get(int).
 	 */
 	@Test
 	public void testGetInt() {
@@ -169,7 +169,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#get(int)}.
+	 * Test method for get(int).
 	 */
 	@Test
 	public void testGetDouble() {
@@ -181,7 +181,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#remove(int)}.
+	 * Test method for remove(int).
 	 */
 	@Test
 	public void testRemoveIndex() {
@@ -194,7 +194,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#remove(java.lang.Object)}.
+	 * Test method for remove(java.lang.Object).
 	 */
 	@Test
 	public void testRemoveE() {
@@ -206,7 +206,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#set(int, java.lang.Object)}.
+	 * Test method for set(int, java.lang.Object).
 	 */
 	@Test
 	public void testSet() {
@@ -216,7 +216,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#isEmpty()}.
+	 * Test method for isEmpty().
 	 */
 	@Test
 	public void testIsEmpty() {
@@ -230,7 +230,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#contains(java.lang.Object)}.
+	 * Test method for contains(java.lang.Object).
 	 */
 	@Test
 	public void testContains() {
@@ -241,7 +241,7 @@ public class MyArrayListTests {
 
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is less.
+	 * Test method for toArray(E[]). When size is less.
 	 */
 	@Test
 	public void testToArrayEArraySmallSize() {
@@ -257,7 +257,7 @@ public class MyArrayListTests {
 	
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is adequate.
+	 * Test method for toArray(E[]). When size is adequate.
 	 */
 	@Test
 	public void testToArrayEArrayBigSize() {
@@ -273,7 +273,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#toArray(E[])}. When size is equal.
+	 * Test method for toArray(E[]) method. When size is equal.
 	 */
 	@Test
 	public void testToArrayEArrayEqualSize() {
@@ -290,7 +290,7 @@ public class MyArrayListTests {
 	
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#toArray()}.
+	 * Test method for toArray() method.
 	 */
 	@Test
 	public void testToArray() {
@@ -305,7 +305,7 @@ public class MyArrayListTests {
 	}
 
 	/**
-	 * Test method for {@link utilities.MyArrayList#iterator().hasNext()}.
+	 * Test method for iterator() method.
 	 */
 	@Test
 	public void testIteratorHasNext() {
@@ -319,7 +319,7 @@ public class MyArrayListTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyArrayList#iterator()}.
+	 * Test method for iterator() method.
 	 */
 	@Test
 	public void testIteratorNext() {

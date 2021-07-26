@@ -38,7 +38,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyStack#size()}.
+	 * Test method for size().
 	 */
 	@Test
 	public void testSize() {
@@ -50,7 +50,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities/MyStack#clear()} and {@link utilities/MyStack#isEmpty()}.
+	 * Test method for clear() and isEmpty().
 	 */
 	@Test
 	public void testClearEmptyStack() {
@@ -60,7 +60,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities/MyStack#peek()}.
+	 * Test method for peek().
 	 */
 	@Test
 	public void testPeek() {
@@ -73,7 +73,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities/MyStack#contains()}.
+	 * Test method for contains().
 	 */
 	@Test
 	public void testContains() {
@@ -89,7 +89,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities/MyStack#search()}.
+	 * Test method for search().
 	 */
 	@Test
 	public void testSearch() {
@@ -102,7 +102,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities/MyStack#pop()}, {@link utilities/MyStack#push()}.
+	 * Test method for pop(), push().
 	 */
 	@Test
 	public void testPopAndPush() {
@@ -125,7 +125,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyStack#toArray(E[])}. When size is less.
+	 * Test method for toArray(E[]). When size is less.
 	 */
 	@Test
 	public void testToArrayEArraySmallSize() {
@@ -141,7 +141,7 @@ class MyStackTests {
 	
 	
 	/**
-	 * Test method for {@link utilities.MyStack#toArray(E[])}. When size is adequate.
+	 * Test method for toArray(E[]). When size is adequate.
 	 */
 	@Test
 	public void testToArrayEArrayBigSize() {
@@ -157,7 +157,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyStack#toArray(E[])}. When size is equal.
+	 * Test method for toArray(E[]). When size is equal.
 	 */
 	@Test
 	public void testToArrayEArrayEqualSize() {
@@ -173,7 +173,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyStack#iterator().hasNext()}.
+	 * Test method for iterator().hasNext().
 	 */
 	@Test
 	public void testIteratorHasNext() {
@@ -185,7 +185,7 @@ class MyStackTests {
 	}
 	
 	/**
-	 * Test method for {@link utilities.MyStack#iterator()}.
+	 * Test method for iterator().
 	 */
 	@Test
 	public void testIteratorNext() {
