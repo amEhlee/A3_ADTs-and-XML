@@ -22,15 +22,18 @@ public class MyDLLTests {
      * Linked list to be manipulated in every test
      */
     private ListADT<String> DLL = new MyDLL<String>();
+    private ListADT<String> DLL2 = new MyDLL<String>();
 
     @BeforeEach
     void setUp() throws Exception {
         DLL = new MyDLL<String>();
+        DLL2 = new MyDLL<String>();
     }
 
 	@AfterEach
 	public void tearDown() throws Exception {
 		DLL.clear();
+		DLL2.clear();
 	}
 
     @Test
@@ -82,7 +85,14 @@ public class MyDLLTests {
 
     @Test
     public void testAddAll() {
-        fail("Not yet implemented");
+        DLL2.add("c");
+        DLL.add("a");
+        DLL.add("b");
+        
+        //adding all the items of DLL to at the end of the existing list DLL2 
+        DLL2.addAll(DLL);
+      
+        assertEquals(DLL.get(1), DLL2.get(2));
     }
 
     @Test
