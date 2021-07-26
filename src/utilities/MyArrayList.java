@@ -99,6 +99,7 @@ public class MyArrayList<E> implements ListADT<E> {
 		
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public boolean addAll(ListADT<? extends E> toAdd) throws NullPointerException {
 		try {
@@ -106,9 +107,19 @@ public class MyArrayList<E> implements ListADT<E> {
 				throw new NullPointerException();
 			}
 			
-			Object[] arr = toAdd.toArray();
+			E[] newArr = (E[]) toAdd.toArray();
+
+			int addLength = newArr.length;
+			E[] tempArr = (E[]) new Object[addLength + size];
+			for (int i = 0; i < size;i++) {
+				tempArr[i] = (E) arr[i];
+			}
+			for (int i = 0; i < addLength;i++) {
+				tempArr[i] = (E) newArr[i];
+			}
 			
-			//TODO
+			arr = tempArr;
+			size = arr.length;
 			
 
 			return true;
@@ -315,17 +326,22 @@ public class MyArrayList<E> implements ListADT<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		return new Iterator<E>() {
-
+		return new Iterator<E>() {			
+			
+			private int index = 0; //Current Index pointer
+			
 			@Override
 			public boolean hasNext() {
-				// TODO Auto-generated method stub
-				return false;
+				return (index < size && arr[index] != null); //checks if the next is not null or the the index is less than the maximum index and returns true or false
 			}
 
 			@Override
-			public E next() throws NoSuchElementException {
-				// TODO Auto-generated method stub
+			public E next() throws NoSuchElementException { //iterates iterator
+				try {
+					return arr[index++]; //Moves the pointer one index forward
+				} catch (NoSuchElementException ex){ //catches errors when there is no index past the iteration
+					ex.printStackTrace();
+				}
 				return null;
 			}
 		};
