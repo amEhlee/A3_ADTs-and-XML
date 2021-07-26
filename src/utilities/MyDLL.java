@@ -1,5 +1,7 @@
 package utilities;
 
+import java.util.NoSuchElementException;
+
 import adts.Iterator;
 import adts.ListADT;
 
@@ -42,7 +44,6 @@ public class MyDLL<E> implements ListADT<E> {
 	@Override
 	public boolean add(int index, E toAdd) throws NullPointerException, IndexOutOfBoundsException {
 		Node newNode = new Node(toAdd);
-		Node tempPrev = null;
 
 		if(index > size() || index < 0) {
 			throw new IndexOutOfBoundsException();
@@ -50,12 +51,11 @@ public class MyDLL<E> implements ListADT<E> {
 
 		Node current = head;
 		for (int i = 1; i < index; i++) {
-			tempPrev = current;
 			current = current.getNext();
 		}
 
 		newNode.setNext(current.getNext());
-		newNode.setPrevious(tempPrev);
+		newNode.setPrevious(current.getPrevious());
 		current.setNext(newNode);
 
 		return true;
@@ -136,29 +136,25 @@ public class MyDLL<E> implements ListADT<E> {
 			head = head.getNext();
 		} else if(index == size() - 1) {
 			Node current = head;
-			Node tempPrev = current;
-			for (int i = 0; i < index; i++) {
-				tempPrev = current;
+			for (int i = 0; i < index; i++) {;
 				current = current.getNext();
 			}
 			
 			// unlink last node
 			removed = (E) current.getData();
-			tempPrev.setNext(tail);
+			current.getPrevious().setNext(tail);
 		} else {
 			Node current = head;
-			Node tempPrev = null;
 			// navigate to node
 			for (int i = 0; i < index; i++) {
-				tempPrev = current;
 				current = current.getNext();
 
 			}
 
 			// unlink node
 			removed = (E) current.getData();
-			tempPrev.setNext(current.getNext());
-			current.getNext().setPrevious(tempPrev);
+			current.getPrevious().setNext(current.getNext());
+			current.getNext().setPrevious(current.getPrevious());
 		}
 
 		return removed;
@@ -168,7 +164,6 @@ public class MyDLL<E> implements ListADT<E> {
 	@Override
 	public E remove(E toRemove) throws NullPointerException {
 		Node current = head;
-		Node tempPrev = current;
 		E removed = null;
 
 		// if node is head 
@@ -180,24 +175,22 @@ public class MyDLL<E> implements ListADT<E> {
 		} else if(get(size() - 1) == toRemove) {
 			// if target is tail 
 			while(current.getData() != toRemove ) {
-				tempPrev = current;
 				current = current.getNext();
 			}
 
 			// unlink node
 			removed = (E) current.getData();
-			tempPrev.setNext(tail);
+			current.getPrevious().setNext(tail);
 			return removed;
 			
 		} else {
 			for (int i = 0; i < size(); i++) {
 				if (current.getData() == toRemove) {
 					removed = (E) current.getData();
-					current.getNext().setPrevious(tempPrev);
-					tempPrev.setNext(current.getNext());
+					current.getNext().setPrevious(current.getPrevious());
+					current.getPrevious().setNext(current.getNext());
 				}
 				else {
-					tempPrev = current;
 					current = current.getNext();
 				}
 			}
@@ -281,8 +274,31 @@ public class MyDLL<E> implements ListADT<E> {
 
 	@Override
 	public Iterator<E> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterator<E>() {
+			
+			private Node pointer = head;
+
+			@Override
+			public boolean hasNext() {
+				return (pointer != tail && pointer != null);
+			}
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public E next() throws NoSuchElementException {
+				// TODO Auto-generated method stub
+				try {
+					pointer = pointer.getNext();
+					return (E) pointer.getData();
+				} catch(NoSuchElementException e) {
+					e.printStackTrace();
+				}
+				
+				return null;
+			}
+			
+		};
+	
 	}
 
 }
