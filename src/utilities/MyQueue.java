@@ -9,41 +9,45 @@ import exceptions.EmptyQueueException;
 public class MyQueue<E> implements QueueADT<E> {
 	
 	@SuppressWarnings("unchecked")
-	E[] arr = (E[]) new Object[0];
+    private E[] arr;
+    private int size;
 
-	public void enqueue(E toAdd) throws NullPointerException {
-		try {
-			if (toAdd == null) {
-				throw new NullPointerException();
-			}
-			
-			E[] temp = (E[]) new Object[arr.length + 1];
-			temp[temp.length - 1] = toAdd;
-			arr = temp;
-		} catch (NullPointerException ex) {
-			ex.printStackTrace();
-		}
-		
-	}
+    public MyQueue() {
+        size = 0;
+        arr = (E[]) new Object[size];
+    }
+
+    public void enqueue(E toAdd) throws NullPointerException {
+        if (toAdd == null) {
+            throw new NullPointerException();
+        }
+
+        Object[] newArr = new Object[size + 1];
+        for (int i = 0; i < size; i++) {
+            newArr[i] = arr[i];
+        }
+        newArr[size] = toAdd;
+        arr = (E[]) newArr;
+        size++;
+    }
+
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public E dequeue() throws EmptyQueueException {
-		E dequeued = null;
-		try {
-			if (arr.length <= 0) {
-				throw new EmptyQueueException();
-			}
+        E dequeued;
+        if (size <= 0) {
+            throw new EmptyQueueException();
+        }
 
-			E[] temp = (E[]) new Object[arr.length - 1];
-			for (int i = 1; i < temp.length; i++) {
-				temp[i] = arr[i];
-			}
-			dequeued = arr[0];
-			arr = temp;
-		} catch (EmptyQueueException ex) {
-			ex.printStackTrace();
+        dequeued = arr[0];
+
+		Object[] newArr = new Object[size - 1];
+		for (int i = 1; i < size; i++) {
+			newArr[i - 1] = arr[i];
 		}
+		arr = (E[]) newArr;
+		size--;
 		return dequeued;
 	}
 
